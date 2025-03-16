@@ -35,11 +35,23 @@ function setup() {
   createCanvas(600, 600); //background
   strokeWeight(2); 
 
+  // Temperature UI
   createP('Temperature (°C)');
-  createSlider(0, 40, 18).input(function() { temperature = this.value(); }); //slider
+  let tempSlider = createSlider(0, 40, 18);
+  let tempValue = createSpan(` ${temperature}°C`); // Displays the value next to slider
+  tempSlider.input(function() {
+    temperature = this.value();
+    tempValue.html(` ${temperature}°C`);
+  });
 
+  // Moisture UI
   createP('Moisture (%)');
-  createSlider(0, 100, 60).input(function() { moisture = this.value(); }); //slider
+  let moistSlider = createSlider(0, 100, 60);
+  let moistValue = createSpan(` ${moisture}%`);
+  moistSlider.input(function() {
+    moisture = this.value();
+    moistValue.html(` ${moisture}%`);
+  });
 
   drawRules = {
     "L": (t) => { //drawing leaves rules
